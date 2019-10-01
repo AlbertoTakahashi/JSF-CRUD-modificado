@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:decorate xmlns="http://www.w3.org/1999/xhtml"
+             xmlns:h="http://xmlns.jcp.org/jsf/html"
+             xmlns:p="http://primefaces.org/ui"
+             xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+             template="template.xhtml"
+             xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+   
+    <h:form id="formulario">
+        <p:toolbar>
+            <f:facet name="left">  
+                <p:commandButton value="Adicionar" action="#{bookBean.adicionar()}" update=":formulario"></p:commandButton>
+                <p:commandButton value="Listar" action="#{bookBean.listar()}" update=":formulario"></p:commandButton>
+            </f:facet>
+        </p:toolbar>
+
+        <p:fieldset legend="FieldSet">
+      
+            <p:panelGrid columns="2">
+                <h:outputLabel value="Nome: "></h:outputLabel>
+                <p:inputText value="#{bookBean.livro.name}"></p:inputText>
+                <h:outputLabel value="Autor: "></h:outputLabel>
+                <p:inputText value="#{bookBean.livro.author}"></p:inputText>
+                <h:outputLabel value="Categoria: "></h:outputLabel>
+                <p:inputText value="#{bookBean.livro.category}"></p:inputText>
+                <h:outputLabel value="Ano: "></h:outputLabel>
+                <p:inputText value="#{bookBean.livro.year}"></p:inputText>
+                <h:outputLabel value="Preço: "></h:outputLabel>
+                <p:inputText value="#{bookBean.livro.price}"></p:inputText>            
+            </p:panelGrid>
+
+            <p:dataTable value="#{bookBean.livros}" var="livrarada">
+                <p:column>
+                    <p:commandButton value ="Editar" action="#{bookBean.editar(livrarada)}" update=":formulario"></p:commandButton>
+                    <p:commandButton value ="Apagar" action="#{bookBean.apagar(livrarada)}" update=":formulario"></p:commandButton>
+                </p:column>
+                <p:column headerText="Nome" sortBy="#{livrarada.name}">
+                    <h:outputText value="#{livrarada.name}"></h:outputText>
+                </p:column>
+                <p:column headerText="Autor" sortBy="#{livrarada.author}">
+                    <h:outputText value="#{livrarada.author}"></h:outputText>
+                </p:column>
+                <p:column headerText="Categoria" sortBy="#{livrarada.category}">
+                    <h:outputText value="#{livrarada.category}"></h:outputText>
+                </p:column>
+                <p:column headerText="Ano" sortBy="#{livrarada.year}">
+                    <h:outputText value="#{livrarada.year}"></h:outputText>
+                </p:column>
+                <p:column headerText="Preço" sortBy="#{livrarada.price}">
+                    <h:outputText value="#{livrarada.price}"></h:outputText>
+                </p:column>
+            </p:dataTable>
+        </p:fieldset>
+    </h:form>
+</ui:decorate>
+
+
+
+
+
